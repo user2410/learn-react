@@ -1,13 +1,21 @@
-import Todo from "./components/Todo";
+import {Route, Routes, BrowserRouter} from 'react-router-dom';
+
+import AllMeetupsPage from './pages/AllMeetups';
+// import NewMeetupsPage from './pages/NewMeetup';
+// import FavoritesPage from './pages/Favorites';
 
 function App() {
+  // domain: loaclhost:3000/
+
   return (
   <div>
-    <h1>Todos</h1>
-    <Todo text='Learn React'/>
-    <Todo text='Learn React1'/>
-    <Todo text='Learn React2'/>
-  </div>);
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AllMeetupsPage />} />
+      </Routes>
+    </BrowserRouter>
+  </div>
+  );
 }
 
 export default App;
