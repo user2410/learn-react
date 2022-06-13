@@ -1,7 +1,10 @@
+import {useNavigate} from 'react-router-dom';
 import NewMeetupForm from "../components/meetups/NewMeetupFrom";
 
 function NewMeetupsPage(){
+    const navigate = useNavigate();
     function addMeetupHandler(meetupData){
+
         // add a 'meetups' table
         fetch(
             'https://react-get-started-6df0b-default-rtdb.firebaseio.com/meetups.json',
@@ -12,7 +15,10 @@ function NewMeetupsPage(){
                     'Content-Type': 'application/json'
                 }
             }
-        );
+        ).then(()=>{
+            // navigate.push()
+            navigate('/', {replace:true});
+        });
     }
     return (
         <section>
