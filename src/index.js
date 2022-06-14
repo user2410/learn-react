@@ -4,10 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
+import { FavsContextProvider } from './store/fav-contexts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <FavsContextProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
+  </FavsContextProvider>
 );
