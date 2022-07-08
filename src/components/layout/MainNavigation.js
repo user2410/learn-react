@@ -1,11 +1,13 @@
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import {Link} from 'react-router-dom';
 
 import classes from './MainNavigation.module.css';
-import FavContext from '../../store/fav-contexts';
+// import FavContext from '../../store/fav-contexts';
+import {useSelector} from 'react-redux';
 
 function MainNavigation() {
-    const favContext = useContext(FavContext);
+    // const favContext = useContext(FavContext);
+    const allFavs = useSelector((state) => state.favHandler);
 
     return (
         <header className={classes.header}>
@@ -20,7 +22,7 @@ function MainNavigation() {
                     </li>
                     <li>
                         <Link to='/favs'>My Favorites</Link>
-                        <span className={classes.badge}>{favContext.totalFavs}</span>
+                        <span className={classes.badge}>{allFavs.length}</span>
                     </li>
                 </ul>
             </nav>

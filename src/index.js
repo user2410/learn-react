@@ -4,13 +4,21 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
-import { FavsContextProvider } from './store/fav-contexts';
+// import { FavsContextProvider } from './store/fav-contexts';
+
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import allReducers from './reducers';
+
+const store = createStore(allReducers);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <FavsContextProvider>
+  // <FavsContextProvider>
+  <Provider store={store}>
   <BrowserRouter>
     <App />
   </BrowserRouter>
-  </FavsContextProvider>
+  </Provider> 
+  // </FavsContextProvider>
 );

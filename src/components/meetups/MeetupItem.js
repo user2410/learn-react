@@ -1,25 +1,30 @@
-import { useContext } from 'react';
+// import { useContext } from 'react';
 
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
-import FavContext from '../../store/fav-contexts';
+// import FavContext from '../../store/fav-contexts';
+import {useSelector, useDispatch} from 'react-redux';
+import {addFav, removeFav} from '../../actions/favs';
 
 function MeetupItem(props) {
-  const favContext = useContext(FavContext);
+  // const favContext = useContext(FavContext);
+  const allFavs = useSelector((state) => state.favHandler);
+  const dispatch = useDispatch();
 
-  const itemIsFav = favContext.isItemFav(props.id);
+  const itemIsFav = allFavs.some(meetup => meetup.id === props.id);
 
   function toggleFavStatusHandler(){
     if(itemIsFav){
-      favContext.removeFav(props.id);
+      dispatch(removeFav(props.id));
+      // favContext.removeFav(props.id);
     }else{
-      favContext.addFav({
+      dispatch(addFav({
         id : props.id,
         title: props.title,
         description: props.description,
         image: props.image,
         address: props.address
-      })
+      }));
     }
   }
 
